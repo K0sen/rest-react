@@ -13,6 +13,7 @@ App should consists from 2 parts: RESTful api service and react as web-interface
 body: 
 
 **with key: json_film**
+
 ```[{"title":"MYFILM3","release_date":"1234","format":"\u0443\u0446","stars":["New Star22","Clevon Little","Harvey Korman","Gene Wilder","Slim Pickens","Madeline Kahn"]}, {"title":"MYFILM4","release_date":"1234","format":"\u0443\u0446","stars":["New Star1","Clevon Little","Harvey Korman","Gene Wilder","Slim Pickens","Madeline Kahn"]}]```
 
 **Get a list of films**
