@@ -6,7 +6,7 @@ App should consists from 2 parts: RESTful api service and react as web-interface
  - dump db
  
 # Testing:
-**A a films. Works for 1 film same as for several**
+**Add films. Works for 1 film same as for several**
 
 ``` POST http://localhost:8000/api/films ```
 
