@@ -1,3 +1,7 @@
+.film-add {
+    position: relative;
+}
+
 .add-btn {
     margin: 15px 0;
 }
@@ -20,6 +24,19 @@
 }
 
 .loader {
-    font-weight: bold;
-    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    border-radius: 25px;
+}
+
+.loader .loader__text {
+    position: relative;
+    color: white;
+    top: 30%;
 }

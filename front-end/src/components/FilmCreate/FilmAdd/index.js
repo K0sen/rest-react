@@ -22,6 +22,7 @@ class FilmAdd extends Component {
         e.preventDefault();
 
         this.setState({ showForm: false });
+        this.props.loading();
 
         let params = [{
             title: this.fields.title.trim(),
@@ -46,12 +47,16 @@ class FilmAdd extends Component {
                         alert(result.body);
                     }
 
-                    this.props.filmFetch();
+
                 },
                 (error) => {
                     console.log(error);
                 }
             )
+            .then(() => {
+                this.props.loading();
+                this.props.filmFetch();
+            })
     };
 
     showForm = () => this.setState({ showForm: true });

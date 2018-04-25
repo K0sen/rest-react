@@ -18,7 +18,7 @@ class FilmList extends Component {
         if (this.state.sorted)
                 films = films.sort((a, b) => a.title.localeCompare(b.title));
 
-        let greenClass = this.state.sorted ? 'text-success' : null;
+        let greenClass = this.state.sorted ? 'text-success' : '';
 
         if (!films.length) {
             return (
@@ -31,7 +31,7 @@ class FilmList extends Component {
                 <div className={`film-list__sort text-right ${greenClass}`}>
                     <a
                         onClick={this.state.sorted ? null : this.sort} href={null}
-                        style={this.state.sorted ? null : {cursor : 'pointer'}}
+                        style={this.state.sorted ? {} : {cursor : 'pointer'}}
                     >Sort by title</a>
                 </div>
                 <div className="row">

@@ -69,12 +69,10 @@ class App extends Component {
         }
     );
 
-    loader = () => this.setState({isLoaded: false});
-
     render() {
         let content = '';
         if (!this.state.isLoaded) {
-            content = <div className="loader">Loading...</div>;
+            content = <div className="h3">Loading...</div>;
         } else if (this.state.status === 'error') {
             content = <div>Error :(</div>
         } else if (!this.state.films || !this.state.films.length) {
@@ -91,7 +89,7 @@ class App extends Component {
                     <div className="managing row justify-content-between">
                         <FilmSearch updateFilterFilm={this.updateFilterFilm.bind(this)}
                                     updateFilterActor={this.updateFilterActor.bind(this)} />
-                        <FilmCreate loader={this.loader} filmFetch={this.filmFetch.bind(this)} />
+                        <FilmCreate filmFetch={this.filmFetch.bind(this)} />
                     </div>
                     <hr />
                     <main className="main">

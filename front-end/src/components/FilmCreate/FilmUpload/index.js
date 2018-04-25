@@ -18,7 +18,7 @@ class FilmCreate extends Component {
             return false;
         }
 
-        this.props.loader();
+        this.props.loading();
 
         fetch(`${API_ADDRESS}/api/films`, {
             method: 'POST',
@@ -36,19 +36,26 @@ class FilmCreate extends Component {
                     } else if (result.status === 'ok') {
                         alert(result.body);
                     }
-
-                    this.props.filmFetch();
                 },
                 (error) => {
                     console.log(error);
                 }
             )
+            .then(() => {
+                this.props.loading();
+                this.props.filmFetch();
+            })
     };
 
     readFile = (e) => {
         let fr = new FileReader();
         let file = e.target.files[0];
-        if (file.type !== this.allowedFileType) {
+        if (!file) {
+            this.films = '';
+            return false;
+        }
+
+        if ((file.type !== this.allowedFileType) ) {
             alert(`file type must be ${this.allowedFileType}`);
             return false;
         }
