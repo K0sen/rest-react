@@ -1,0 +1,11 @@
+.header {
+    margin-left: 10%;
+    margin-bottom: 30px;
+    height: 150px;
+    background: url("./img/header.jpg") repeat-x;
+    background-size: 450px;
+    border-bottom: 15px solid black;
+    border-left: 15px solid black;
+    border-image: url("./img/wood.jpg") 30 round round;
+    box-shadow: black 4px 13px 10px;
+}

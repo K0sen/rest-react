@@ -74,7 +74,7 @@ abstract class Model
 		$handler->execute(['id' => $id]);
 		$items = $handler->fetchAll(\PDO::FETCH_CLASS, get_class($this));
 
-		return $items;
+		return $items[0] ??  false;
 	}
 
 	public function deleteById($id)

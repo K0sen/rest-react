@@ -44,7 +44,7 @@ class Film extends Model
 		);
 
 		if (!$handler->execute($params)) {
-			throw new RestException("Film was not added! (?)", Response::BAD_REQUEST);
+			throw new RestException("Film was not added! (?)", Response::NOT_FOUND);
 		}
 
 		return $db->lastInsertId();

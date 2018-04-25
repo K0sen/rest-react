@@ -39,7 +39,7 @@ class FilmActor extends Model
 				'actor_id' => $actorId,
 			);
 			if (!$handler->execute($params)) {
-				throw new RestException("Relations was not added! (?)", Response::BAD_REQUEST);
+				throw new RestException("Relations was not added! (?)", Response::NOT_FOUND);
 			}
 		}
 

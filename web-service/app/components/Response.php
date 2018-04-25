@@ -7,9 +7,11 @@ namespace app\components;
 class Response
 {
 	const METHOD_NOT_ALLOWED = 405;
-	const ILLEGAL_URI = 404;
+	const NOT_FOUND = 404;
 	const OK = 200;
 	const BAD_REQUEST = 400;
+	const ALREADY_EXISTS = 409;
+	const NO_CONTENT = 204;
 
 	public $status;
 	public $body;

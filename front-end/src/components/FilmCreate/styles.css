@@ -1,0 +1,25 @@
+.add-btn {
+    margin: 15px 0;
+}
+
+.film-list__sort {
+    margin: 15px;
+}
+
+.film-list__sort a {
+    color: black;
+    position: relative;
+    font-size: 20px;
+}
+
+.film-list__sort a:after {
+    content: "⇩";
+    font-size: 30px;
+    position: absolute;
+    bottom: -10px;
+}
+
+.loader {
+    font-weight: bold;
+    font-size: 30px;
+}

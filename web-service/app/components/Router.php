@@ -32,12 +32,15 @@ class Router
 		$uri = $request->getURI();
 		$routes = Config::get('routes');
 		$method = $request->getMethod();
+		// TODO Client sends pre-request to server with 'option' method...
+		if ($method == 'options')
+			throw new RestException('Options method?! Why do you do that?', RESPONSE::OK);
 
-		$internalRoute = self::matchRoute($uri, $routes, $method);
-		if($internalRoute === Response::ILLEGAL_URI) {
-			throw new RestException( 'Invalid route: ' . $uri, Response::ILLEGAL_URI);
+		$internalRoute = $this->matchRoute($uri, $routes, $method);
+		if($internalRoute === Response::NOT_FOUND) {
+			throw new RestException( 'Invalid route: ' . $uri, Response::NOT_FOUND);
 		} else if ($internalRoute === Response::METHOD_NOT_ALLOWED) {
-			throw new RestException( 'Method is not allowed ' . $uri, Response::METHOD_NOT_ALLOWED);
+			throw new RestException( 'Method is not allowed ' . $uri, RESPONSE::METHOD_NOT_ALLOWED);
 		}
 
 		// Defines controller & action. Also adds new params to _GET array (if transferred)
@@ -77,7 +80,7 @@ class Router
 			}
 		}
 
-		return $invalidMethod ? Response::METHOD_NOT_ALLOWED : Response::ILLEGAL_URI;
+		return $invalidMethod ? Response::METHOD_NOT_ALLOWED : Response::NOT_FOUND;
 	}
 
 	/**

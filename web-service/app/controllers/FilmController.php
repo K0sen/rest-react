@@ -28,6 +28,25 @@ class FilmController extends Controller
 	 * @param Request $request
 	 *
 	 * @return string
+	 */
+	public function getFilm(Request $request)
+	{
+		$filmModel = new Film();
+		$film = $filmModel->findById($request->get('id'));
+		if($film)
+			return $this->response(['film' => $film]);
+
+		return $this->response(
+			'Bad film id',
+			Response::NOT_FOUND,
+			'error'
+		);
+	}
+
+	/**
+	 * @param Request $request
+	 *
+	 * @return string
 	 * @throws RestException
 	 */
 	public function addFilms(Request $request)
@@ -55,7 +74,10 @@ class FilmController extends Controller
 			$count++;
 		}
 
-		return $this->response("{$count} film(s) added", 201);
+		if ($count > 0)
+			return $this->response("{$count} film(s) added");
+		else
+			return $this->response("No new film added", Response::ALREADY_EXISTS);
 	}
 
 	/**
@@ -76,8 +98,8 @@ class FilmController extends Controller
 		}
 
 		return $this->response(
-			'Bad id',
-			Response::BAD_REQUEST,
+			'Bad film id',
+			Response::NOT_FOUND,
 			'error'
 		);
 	}

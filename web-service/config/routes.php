@@ -6,5 +6,6 @@ use app\components\Route;
 return [
 	'get_all_films' => new Route('/api/films', 'FilmController@getFilms', 'get'),
 	'add_a_film' => new Route('/api/films', 'FilmController@addFilms', 'post'),
+	'get_a_film' => new Route('/api/film/{id}', 'FilmController@getFilm', 'get', array('id' => '[0-9]+')),
 	'delete_a_film' => new Route('/api/film/{id}', 'FilmController@deleteFilm', 'delete', array('id' => '[0-9]+')),
 ];

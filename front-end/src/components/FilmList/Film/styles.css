@@ -1,0 +1,21 @@
+.film {
+    padding: 15px;
+    position: relative;
+    box-shadow: darkviolet 2px 2px 7px;
+    margin-bottom: 20px;
+    min-height: 320px;
+}
+
+.film__image {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.film__actors {
+    margin-bottom: 35px;
+}
+
+.film__delete {
+    position: absolute;
+    bottom: 10px;
+}

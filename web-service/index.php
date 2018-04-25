@@ -5,6 +5,9 @@ ini_set('error_reporting', E_ALL);
 // TODO find a right place for headers && composer
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+
 //require(__DIR__.'/vendor/autoload.php');
 
 spl_autoload_register(function ($class) {
