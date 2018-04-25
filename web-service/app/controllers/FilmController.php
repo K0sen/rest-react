@@ -68,8 +68,8 @@ class FilmController extends Controller
 				throw new RestException($errorMessage, Response::BAD_REQUEST);
 			}
 
-			$filmId = $filmModel->save();
 			$actorsId = $actorModel->saveActors($film['stars']);
+			$filmId = $filmModel->save();
 			$filmActorModel->saveRelations($filmId, $actorsId);
 			$count++;
 		}
