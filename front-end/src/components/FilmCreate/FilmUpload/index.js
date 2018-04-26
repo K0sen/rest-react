@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './styles.css'
-import {API_ADDRESS} from "../../../config";
 
 class FilmCreate extends Component {
 
