@@ -1,25 +1,20 @@
 # rest-react
-App should consists from 2 parts: RESTful api service and react as web-interface
+App consists of 2 parts: RESTful api service and react as web-interface
 
 # Running:
- - Shoot: ```php -S localhost:8000 -t web-service```
- - dump db
+- Dump db from `film_archive.sql`
+- Set your database in `web-service/config/db.php`
+- Shoot: `php -S localhost:8000 -t web-service`
+- And: `php -S localhost:5000 -t front-end/build`
  
-# Testing:
- - **Add films. Works for 1 film same as for several**
+Now you are able to using your the app on `localhost:5000`. 
+It will addressing to your api-service on `localhost:5000`.
+ 
+# Using:
 
-``` POST http://localhost:8000/api/films ```
-
-body: 
-
-**with key: json_film**
-
-```[{"title":"MYFILM3","release_date":"1234","format":"\u0443\u0446","stars":["New Star22","Clevon Little","Harvey Korman","Gene Wilder","Slim Pickens","Madeline Kahn"]}, {"title":"MYFILM4","release_date":"1234","format":"\u0443\u0446","stars":["New Star1","Clevon Little","Harvey Korman","Gene Wilder","Slim Pickens","Madeline Kahn"]}]```
-
- - **Get a list of films**
-
-``` GET http://localhost:8000/api/films ```
-
- - **Delete a film by id**
-
-``` DELETE http://localhost:8000/api/film/1 ```
+Here is some feature you can use: 
+- Add a film
+- Load films from file `sample_movies.txt`
+- Delete a film
+- Search by film name and actor name
+- See a list of films and their info
