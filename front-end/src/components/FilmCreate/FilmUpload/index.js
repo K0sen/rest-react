@@ -7,6 +7,12 @@ class FilmCreate extends Component {
     constructor(props) {
         super(props);
 
+        this.fieldsName = {
+            title: 'title',
+            releaseDate: 'release_date',
+            format: 'format',
+            stars: 'stars'
+        };
         this.films = '';
         this.allowedFileType = 'text/plain';
     }
@@ -18,33 +24,12 @@ class FilmCreate extends Component {
             return false;
         }
 
-        this.props.loading();
+        if (!this.films.length) {
+            alert('Incorrect films in file');
+            return false;
+        }
 
-        fetch(`${API_ADDRESS}/api/films`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-                // 'Content-Type': 'application/json'
-            },
-            body: 'json_film='+ encodeURIComponent(JSON.stringify(this.films))
-        }).then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result);
-                    if (result.status === 'error') {
-                        alert(result.body);
-                    } else if (result.status === 'ok') {
-                        alert(result.body);
-                    }
-                },
-                (error) => {
-                    console.log(error);
-                }
-            )
-            .then(() => {
-                this.props.loading();
-                this.props.filmFetch();
-            })
+        this.props.saveFilms(this.films);
     };
 
     readFile = (e) => {
@@ -90,21 +75,21 @@ class FilmCreate extends Component {
 
     fillFilmObject = (filmObject, field, value) => {
         if (field === 'Title') {
-            filmObject.title = value.trim();
+            filmObject[this.fieldsName.title] = value.trim();
         } else if (field === 'Release Year') {
-            filmObject.release_date = value.trim();
+            filmObject[this.fieldsName.releaseDate] = value.trim();
         } else if (field === 'Format') {
-            filmObject.format = value.trim();
+            filmObject[this.fieldsName.format] = value.trim();
         } else if (field === 'Stars') {
-            filmObject.stars = value.split(', ').map((actor) => actor.trim());
+            filmObject[this.fieldsName.stars] = value.split(', ').map((actor) => actor.trim());
         }
     };
 
     filmCheck = (film) => {
-        return  film.hasOwnProperty("title") &&
-                film.hasOwnProperty("release_date") &&
-                film.hasOwnProperty("format") &&
-                film.hasOwnProperty("stars")
+        return  film.hasOwnProperty(this.fieldsName.title) &&
+                film.hasOwnProperty(this.fieldsName.releaseDate) &&
+                film.hasOwnProperty(this.fieldsName.format) &&
+                film.hasOwnProperty(this.fieldsName.stars)
     };
 
     render() {

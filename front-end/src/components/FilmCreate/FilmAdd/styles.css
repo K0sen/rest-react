@@ -17,7 +17,7 @@
     width: 350px;
 }
 
-.close {
+.file-add .close {
     position: absolute;
     font-size: 40px;
     top: 0;

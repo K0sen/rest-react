@@ -40,7 +40,7 @@ class Actor extends Model
 			} else {
 				$this->name = $star;
 				if (!$this->validate()){
-					$errorMessage = json_encode(['Actor was not added. Incorrect fields' => $this->getErrors()]);
+					$errorMessage = 'Actor was not added. Incorrect fields: ' . json_encode($this->getErrors());
 					throw new RestException($errorMessage, Response::BAD_REQUEST);
 				}
 

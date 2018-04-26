@@ -22,41 +22,15 @@ class FilmAdd extends Component {
         e.preventDefault();
 
         this.setState({ showForm: false });
-        this.props.loading();
 
-        let params = [{
+        let film = [{
             title: this.fields.title.trim(),
             release_date: this.fields.releaseDate.trim(),
             format: this.fields.format.trim(),
             stars: this.separateActors(this.fields.actors),
         }];
 
-        fetch(`${API_ADDRESS}/api/films`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-                // 'Content-Type': 'application/json'
-            },
-            body: 'json_film='+ encodeURIComponent(JSON.stringify(params))
-        }).then(res => res.json())
-            .then(
-                (result) => {
-                    if (result.status === 'error') {
-                        alert(result.body);
-                    } else if (result.status === 'ok') {
-                        alert(result.body);
-                    }
-
-
-                },
-                (error) => {
-                    console.log(error);
-                }
-            )
-            .then(() => {
-                this.props.loading();
-                this.props.filmFetch();
-            })
+        this.props.saveFilms(film);
     };
 
     showForm = () => this.setState({ showForm: true });

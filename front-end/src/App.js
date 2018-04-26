@@ -5,6 +5,7 @@ import Header from './components/Header'
 import FilmList from './components/FilmList'
 import FilmSearch from './components/FilmSearch';
 import FilmCreate from './components/FilmCreate';
+import Alert from './components/Alert';
 import {API_ADDRESS} from "./config";
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
         this.state = {
             filterFilm: '',
             filterActor: '',
+            showAlert: false,
             error: null,
             status: '',
             code: 0,
@@ -69,6 +71,10 @@ class App extends Component {
         }
     );
 
+    showAlert = (status, body) => {
+        this.child.showAlert(status, body);
+    };
+
     render() {
         let content = '';
         if (!this.state.isLoaded) {
@@ -86,10 +92,11 @@ class App extends Component {
                 <Header />
                 <div className="container">
                     <h1 className="text-center">Film Archive</h1>
+                    <Alert onRef={ref => (this.child = ref)} />
                     <div className="managing row justify-content-between">
                         <FilmSearch updateFilterFilm={this.updateFilterFilm.bind(this)}
                                     updateFilterActor={this.updateFilterActor.bind(this)} />
-                        <FilmCreate filmFetch={this.filmFetch.bind(this)} />
+                        <FilmCreate showAlert={this.showAlert} filmFetch={this.filmFetch.bind(this)} />
                     </div>
                     <hr />
                     <main className="main">

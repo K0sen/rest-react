@@ -57,6 +57,9 @@ class FilmController extends Controller
 			$filmModel = new Film();
 			$actorModel = new Actor();
 			$filmActorModel = new FilmActor();
+			if (!$filmModel->checkFieldsName($film))
+				return $this->response("Incorrect film format was uploaded", Response::BAD_REQUEST,	'error');
+
 			if ($filmModel->findByName(['title' => $film['title']]))
 				continue;
 
@@ -64,8 +67,8 @@ class FilmController extends Controller
 			$filmModel->release_date = $film['release_date'];;
 			$filmModel->format = $film['format'];
 			if (!$filmModel->validate()) {
-				$errorMessage = json_encode(['Film was not added. Incorrect fields' => $filmModel->getErrors()]);
-				throw new RestException($errorMessage, Response::BAD_REQUEST);
+				$errorMessage = 'Film was not added. Incorrect fields: ' . json_encode($filmModel->getErrors());
+				return $this->response($errorMessage, Response::BAD_REQUEST, 'error');
 			}
 
 			$actorsId = $actorModel->saveActors($film['stars']);
@@ -77,7 +80,7 @@ class FilmController extends Controller
 		if ($count > 0)
 			return $this->response("{$count} film(s) added");
 		else
-			return $this->response("No new film added", Response::ALREADY_EXISTS);
+			return $this->response("No new film added", Response::ALREADY_EXISTS, 'error');
 	}
 
 	/**

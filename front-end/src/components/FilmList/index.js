@@ -27,7 +27,6 @@ class FilmList extends Component {
         }
         return (
             <div className="film-list">
-                {/*<Alert status={status} /> */}
                 <div className={`film-list__sort text-right ${greenClass}`}>
                     <a
                         onClick={this.state.sorted ? null : this.sort} href={null}

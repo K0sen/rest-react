@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FilmAdd from './FilmAdd'
 import FilmUpload from './FilmUpload'
 import './styles.css'
+import {API_ADDRESS} from "../../config";
 
 class FilmCreate extends Component {
 
@@ -9,11 +10,42 @@ class FilmCreate extends Component {
         super(props);
 
         this.state = {
-            loading: false
+            loading: false,
+            alert: false
         }
     }
 
+    saveFilms = (films) => {
+
+        this.loading();
+
+        fetch(`${API_ADDRESS}/api/films`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                // 'Content-Type': 'application/json'
+            },
+            body: 'json_film='+ encodeURIComponent(JSON.stringify(films))
+        }).then(res => res.json())
+            .then(
+                (result) => {
+                    this.props.showAlert(result.status, result.body)
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
+            .then(() => {
+                this.loading();
+                this.props.filmFetch();
+            })
+    };
+
     loading = () => this.setState({loading: !this.state.loading});
+
+    showAlert = () => {
+
+    };
 
     render() {
         return (
@@ -22,8 +54,8 @@ class FilmCreate extends Component {
                     <div className="loader__text h2">Loading...</div>
                 </div>
                 <h3 className="text-center">Film Create</h3>
-                <FilmAdd loading={this.loading} filmFetch={this.props.filmFetch} />
-                <FilmUpload loading={this.loading} filmFetch={this.props.filmFetch} />
+                <FilmAdd saveFilms={this.saveFilms} />
+                <FilmUpload saveFilms={this.saveFilms} />
             </div>
         )
     }

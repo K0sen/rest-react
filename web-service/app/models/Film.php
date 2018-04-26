@@ -65,4 +65,18 @@ class Film extends Model
 
 		return $items;
 	}
+
+	/**
+	 * Checks if film array have property field names
+	 * @param $film
+	 *
+	 * @return bool
+	 */
+	public function checkFieldsName($film)
+	{
+		return array_key_exists('title', $film) &&
+		       array_key_exists('release_date', $film) &&
+		       array_key_exists('format', $film) &&
+		       array_key_exists('stars', $film);
+	}
 }
