@@ -14,7 +14,9 @@ It will addressing to your api-service on `localhost:8000`.
 
 Here is some feature you can use: 
 - Add a film
-- Load films from file `sample_movies.txt`
 - Delete a film
 - Search by film name and actor name
 - See a list of films and their info
+- Load films from file `sample_movies.txt`
+
+**NOTE: For some reason `sample_movies.txt` that uploaded to github adds only 1 film. So use your `sample_movies.txt`. I will fix it soon.**
