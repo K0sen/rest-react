@@ -8,7 +8,7 @@ App consists of 2 parts: RESTful api service and react as web-interface
 - And: `php -S localhost:5000 -t front-end/build`
  
 Now you are able to using your the app on `localhost:5000`. 
-It will addressing to your api-service on `localhost:5000`.
+It will addressing to your api-service on `localhost:8000`.
  
 # Using:
 
