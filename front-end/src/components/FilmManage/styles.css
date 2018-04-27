@@ -1,0 +1,42 @@
+.film-add {
+    position: relative;
+}
+
+.film-add > * {
+    margin-bottom: 15px;
+}
+
+.film-list__sort {
+    margin: 15px;
+}
+
+.film-list__sort a {
+    color: black;
+    position: relative;
+    font-size: 20px;
+}
+
+.film-list__sort a:after {
+    content: "⇩";
+    font-size: 30px;
+    position: absolute;
+    bottom: -10px;
+}
+
+.loader {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    border-radius: 25px;
+}
+
+.loader .loader__text {
+    position: relative;
+    color: white;
+    top: 30%;
+}
