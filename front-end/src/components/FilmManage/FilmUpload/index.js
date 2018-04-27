@@ -53,7 +53,7 @@ class FilmCreate extends Component {
 
     parseFile = (text) => {
         let filmsList = [];
-        let films = text.split(/\n[\r|\n]/).map((x) => x.trim());
+        let films = text.split(/\n[\r|\n][\n]?/);
         for (let film of films) {
             let filmObject = {};
 
