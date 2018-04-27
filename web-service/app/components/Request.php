@@ -54,7 +54,7 @@ class Request
 	 */
 	public function getMethod()
 	{
-		return strtolower($this->server('REQUEST_METHOD'));
+		return strtoupper($this->server('REQUEST_METHOD'));
 	}
 
 	/**

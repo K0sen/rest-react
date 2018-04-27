@@ -4,7 +4,7 @@ import './styles.css'
 import Header from './components/Header'
 import FilmList from './components/FilmList'
 import FilmSearch from './components/FilmSearch';
-import FilmCreate from './components/FilmCreate';
+import FilmManage from './components/FilmManage';
 import Alert from './components/Alert';
 import {API_ADDRESS} from "./config";
 
@@ -96,7 +96,7 @@ class App extends Component {
                     <div className="managing row justify-content-between">
                         <FilmSearch updateFilterFilm={this.updateFilterFilm.bind(this)}
                                     updateFilterActor={this.updateFilterActor.bind(this)} />
-                        <FilmCreate showAlert={this.showAlert} filmFetch={this.filmFetch.bind(this)} />
+                        <FilmManage showAlert={this.showAlert} filmFetch={this.filmFetch.bind(this)} />
                     </div>
                     <hr />
                     <main className="main">

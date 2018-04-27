@@ -79,4 +79,22 @@ class Film extends Model
 		       array_key_exists('format', $film) &&
 		       array_key_exists('stars', $film);
 	}
+
+	/**
+	 * Deletes all Films. TODO Is it safe query?
+	 */
+	public function deleteAllFilms()
+	{
+		$db = DbConnection::getInstance()->getPdo();
+		$handler = $db->prepare(" 
+			SET FOREIGN_KEY_CHECKS = 0;
+
+			TRUNCATE `film_actor`;
+			TRUNCATE `film`;
+			TRUNCATE `actor`;
+			
+			SET FOREIGN_KEY_CHECKS = 1;
+		");
+		$handler->execute();
+	}
 }

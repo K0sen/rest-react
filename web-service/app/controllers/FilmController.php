@@ -106,4 +106,17 @@ class FilmController extends Controller
 			'error'
 		);
 	}
+
+
+	/**
+	 * Removes all films
+	 * @return string
+	 */
+	public function deleteFilms()
+	{
+		$filmModel = new Film();
+		$filmModel->deleteAllFilms();
+
+		return $this->response('All films was removed');
+	}
 }
